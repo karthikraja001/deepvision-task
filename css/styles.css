@@ -1,0 +1,97 @@
+#navbar{
+    font-size: 25px;
+}
+
+#selectVdo{
+    text-align:center;
+    padding:3%;
+    border:thin solid black;
+    border-radius:8px;
+}
+
+input[type="file"] {
+    display: none;
+}
+input[type="text"] {
+    font-size: 20px;
+}
+label{
+    cursor:pointer;
+    font-size: 30px;
+}
+#imageName{
+    width: 220px;
+    color:green;
+}
+.vdoPlayer{
+    width:500px;
+    font-size: 18px;
+}
+.transcript{
+    width: 98%;
+    font-size: 18px;
+}
+#btnVdo{
+  background-color: #317cf5;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1500px) {
+    #vdoPlayer{
+        width:98%;
+    }    
+    #navbar{
+        font-size: 20px;
+    }
+  }
+
+  
+@media only screen and (max-width: 300px) {
+    #navbar{
+        font-size: 12px;
+    }
+  }
+
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 8px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .title {
+    background-color: #317cf5;
+  }
+  .log {
+    background-color: #73a5f5;
+    float: right;
+
+  }

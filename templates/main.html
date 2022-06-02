@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width">
+	<script src="https://kit.fontawesome.com/fa52891f3f.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../css/styles.css"/> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>deepVisionTech</title>
+  <style>
+
+html{
+    height: 100%;
+    background-size: 100%;
+    background: linear-gradient(to bottom right, #E0EAFC 0%, #CFDEF3 100%);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#navbar{
+    font-size: 20px;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#selectVdo{
+    text-align:center;
+    padding:2%;
+    /* border:thin solid black; */
+    border-radius:8px;
+    width: 500px;
+    font-size: 10px;
+    opacity: 1;
+    /* background-color: #e5e5f7; */
+}
+
+input[type="file"] {
+    display: none;
+}
+input[type="text"] {
+    font-size: 20px;
+}
+label{
+    cursor:pointer;
+    font-size: 26px;
+}
+#videoName{
+    width: 220px;
+    color:green;
+    font-family: 'Roboto', sans-serif;
+}
+.vdoPlayer{
+    width:500px;
+    font-size: 16px;
+}
+.transcript{
+    width: 99%;
+    font-size: 18px;
+    background-color: #cad4e3;
+    font-family: 'Roboto', sans-serif;
+}
+#inpVdo{
+    width: 500px;
+    font-size: 16px;
+    border: #000000;
+}
+#btnVdo{
+  background-color: #317cf5;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.filename{
+    /* color: #317cf5; */
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+@media only screen and (max-width: 1500px) {
+    #vdoPlayer{
+        width:98%;
+    }    
+    #navbar{
+        font-size: 15px;
+    }
+  }
+
+  
+@media only screen and (max-width: 300px) {
+    #navbar{
+        font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #selectVdo{
+        width: 90%;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 8px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .title {
+    background-color: #317cf5;
+  }
+  .log {
+    background-color: #317cf5;
+    float: right;
+  }
+  .user {
+    background-color: #73a5f5;
+    float: right;
+  }
+  .select{
+      font-size: 22px;
+      font-family: 'Roboto', sans-serif;
+  }
+  </style>
+</head>
+
+<body>
+    <ul id="navbar">
+        <li><a class="title" href="/home"><i class="fa-solid fa-align-center"></i> Transcipt</a></li>
+        <li><a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li class="log"><a href="/logout" >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span id="user">Logout</span></a>
+        </li>
+        {% if userName %}
+        <li class="user"><a ><i class="fas fa-user"></i> {{userName}}</a></li>
+        {% endif %}
+    </ul>
+
+    <form method="post" action="/home" enctype="multipart/form-data">
+        <br/><br/><br/>
+        <center>
+        <div id="selectVdo">
+            <label class="select" for="inpVdo"><b >Select video</b> <br/>
+                <i class="fa fa-2x fa-solid fa-video" style="color: #317cf5;"></i>
+                <input id="inpVdo" type="file" name="file" accept="video/*"/>
+                <br/>
+                <span id="vdoName"></span>
+            </label>
+            <br/>
+            <label class="filename" for="name">Enter File Name:</label>
+            <input type="text" id="videoName" name="videoName" placeholder="Enter file name" />
+            <br/><br/>
+            <button id="btnVdo" class="btn" type="submit">Upload</button>
+        </div>
+    </center>
+    </form>
+
+    <br/><br/>
+        <form action="">
+            <br/><br/>
+            {% if filename %}
+            <label for="transcript" class="filename"><i class="fa-solid fa-align-center"></i> Transcript for {{filename}}</label>
+            {% else %}
+            <label for="transcript" class="filename"><i class="fa-solid fa-align-center"></i> Transcript </label>
+            {% endif %}
+            <br/><br/>
+            <textarea class="transcript" name="transcript" rows="6" cols="50">{% if resultFound %}{{resultFound}}{% else %}Transcripting the uploaded video file might take time. After transcription the video is saved in history, wait to see the transcription or come back after few seconds to see the transcription in history tab. {% endif %}
+            </textarea>
+        </form>
+        <br/>
+  </body>
+
+  <script> 
+    let uploadField = document.getElementById("inpVdo");
+    let videoName = document.getElementById("vdoName")
+
+    uploadField.addEventListener("change", ()=>{
+        let inputVideo = document.querySelector("input[type=file]").files[0];
+        videoName.innerText = inputVideo.name;
+    })
+
+    uploadField.onchange = function() {
+        console.log(this.files[0].size);
+        if(this.files[0].size > (100 * 1000000)){   
+            alert("File is too big!");
+            this.value = "";
+        };
+        let ext = this.files[0].name.split('.').pop()
+        console.log(ext);
+        if((ext == 'ogm' || ext == 'mp4' || ext == 'avi' || ext == 'mkv' || ext == 'webm' || ext == 'mpeg' || ext == 'wmv' || ext == 'mov')){   
+            console.log("File is supported!");
+        }
+        else{
+            alert("File format not supported, supported file formats mp4, ogm, avi, mkv, webm, mpeg, wmv, mov");
+            this.value = "";
+            videoName.innerText = "";
+        };
+    };
+
+</script>
+</html>

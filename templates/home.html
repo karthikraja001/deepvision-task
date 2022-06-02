@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fa52891f3f.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../css/styles.css"/> -->
+    <title>deeepVisionTech</title>
+  <style>
+
+    html{
+    height: 100%;
+    background-size: 100%;
+    background: linear-gradient(to bottom right, #E0EAFC 0%, #CFDEF3 100%);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#navbar{
+    font-size: 20px;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#selectVdo{
+    text-align:center;
+    padding:2%;
+    /* border:thin solid black; */
+    border-radius:8px;
+    width: 500px;
+    font-size: 10px;
+    opacity: 1;
+    background-color: #e5e5f7;
+}
+
+input[type="file"] {
+    display: none;
+}
+input[type="text"] {
+    font-size: 20px;
+}
+label{
+    cursor:pointer;
+    font-size: 26px;
+}
+#imageName{
+    width: 220px;
+    color:green;
+    font-family: 'Roboto', sans-serif;
+}
+.vdoPlayer{
+    width:500px;
+    font-size: 16px;
+}
+.transcript{
+    width: 99%;
+    font-size: 18px;
+    background-color: #cad4e3;
+    font-family: 'Roboto', sans-serif;
+}
+#inpVdo{
+    width: 500px;
+    font-size: 16px;
+    border: #000000;
+}
+#btnVdo{
+  background-color: #317cf5;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.filename{
+    /* color: #317cf5; */
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+@media only screen and (max-width: 1500px) {
+    #vdoPlayer{
+        width:98%;
+    }    
+    #navbar{
+        font-size: 15px;
+    }
+  }
+
+  
+@media only screen and (max-width: 300px) {
+    #navbar{
+        font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #selectVdo{
+        width: 90%;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 8px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .title {
+    background-color: #317cf5;
+  }
+  .log {
+    background-color: #317cf5;
+    float: right;
+  }
+  .select{
+      font-size: 22px;
+      font-family: 'Roboto', sans-serif;
+  }
+  .title {
+    background-color: #317cf5;
+  }
+  .home {
+    font-family: 'Roboto', sans-serif;
+  }
+  .homeTxt{
+    font-size: 20px;
+    display: inline-flexbox;
+    font-family: 'Roboto', sans-serif;
+  }
+  .icon{
+    font-size: 50px;
+  }
+  .icon2{
+    font-size: 100px;
+  }
+  hr {
+  border-top: 5px solid #317cf5;
+}
+    </style>
+</head>
+<body>
+    <ul id="navbar">
+      <li><a class="title" href="/home"><i class="fa-solid fa-align-center"></i> Transcipt</a></li>
+      <li><a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+      <li class="log"><a href="/login" >
+        <i class="fa-solid fa-right-to-bracket"></i> 
+          <span id="user">Login</span></a>
+      </li>
+  </ul>
+  <br/>
+  <div class="home">
+      <!-- display about audio transcription -->
+      <center>
+        <h1>Video Transcipt</h1>
+      </center>
+      <p class="homeTxt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transcipt is a website that works on browsers of multiple devices. Transcript is used to get transcript from videos. Here, the user can login to get transcript of the video. The transcript is saved in the history tab, User can view the previous transcripts after logging in </p>
+      <hr>
+      <center>
+        <h2><i class="fa-solid fa-right-to-bracket"></i> Login to transcript video file</h2>
+      </center>
+      <hr>
+      <center>
+        <h1>What we do</h1>
+        <p class="homeTxt"><i class="fa-solid fa-user icon2"></i><br/><br/>User uploads video</p>
+        <i class="fa-solid fa-arrow-down-long icon"></i>
+        <p class="homeTxt"><i class="fa-solid fa-file-audio icon2"></i><br/><br/>Gets audio from video</p>
+        <i class="fa-solid fa-arrow-down-long icon"></i>
+        <p class="homeTxt"><i class="fa-solid fa-file-lines icon2"></i><br/><br/>Get and display transcript from audio</p>
+        <i class="fa-solid fa-arrow-down-long icon"></i>
+        <p class="homeTxt"><i class="fa-solid fa-clock-rotate-left icon2"></i><br/><br/>Saves transcript in history</p>        
+      </center>
+      <br/><br/><br/><br/>
+
+  </div>
+
+
+</body>
+</html>
